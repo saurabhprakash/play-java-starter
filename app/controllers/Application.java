@@ -10,7 +10,13 @@ import play.libs.Json;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+import org.jsoup.nodes.Element;
+
 import java.util.List;
+import java.io.IOException;
 
 import static play.libs.Json.*;
 
@@ -52,4 +58,9 @@ public class Application extends Controller {
         return ok(result);
     }
 
+    public Result scrape() throws IOException {
+        Document doc = Jsoup.connect("http://en.wikipedia.org/wiki/Boston").get();
+        Element contentDiv = doc.select("div[id=content]").first();
+        return ok(contentDiv.toString());
+    }
 }
