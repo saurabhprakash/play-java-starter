@@ -51,13 +51,27 @@ public class Application extends Controller {
 //        });
 //    }
 
+    //
+    //    Returns sample JSON response + experiment with return types
+    //
     public Result getNameJSON() {
         ObjectNode result = Json.newObject();
         result.put("fname", "saurabh");
         result.put("lname", "prakash");
+
+        //return notFound();
+        //return notFound("<h1>Page not found</h1>").as("text/html");
+        //return badRequest(views.html.form.render(formWithErrors));
+        //return internalServerError("Oops");
+        //return status(488, "Strange response type");
+        //return redirect("/persons");
         return ok(result);
+
     }
 
+    //
+    //    Returns sample web scraped data
+    //
     public Result scrape() throws IOException {
         Document doc = Jsoup.connect("http://en.wikipedia.org/wiki/Boston").get();
         Element contentDiv = doc.select("div[id=content]").first();
