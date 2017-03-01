@@ -5,6 +5,8 @@
 # Home page
 GET     /                           controllers.Application.index()
 POST    /person                     controllers.Application.addPerson()
+GET     /check-call-params/:page    controllers.Application.checkCallParams(page)
+GET     /check1                     controllers.Application.checkCallParams2(page: Int ?= 1)
 GET     /persons                    controllers.Application.getPersons
 GET		/name				        controllers.Application.getName
 GET		/name-json				    controllers.Application.getNameJSON

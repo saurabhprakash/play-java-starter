@@ -77,4 +77,18 @@ public class Application extends Controller {
         Element contentDiv = doc.select("div[id=content]").first();
         return ok(contentDiv.toString());
     }
+
+    //http://localhost:9000/check-call-params/saurabh
+    public Result checkCallParams(String page) {
+        //String content = Page.getContentOf(page);
+        response().setContentType("text/html");
+        return ok(page);
+    }
+
+    // http://localhost:9000/check1?page=1
+    public Result checkCallParams2(Integer page) {
+        //String content = Page.getContentOf(page);
+        response().setContentType("text/html");
+        return ok(page.toString());
+    }
 }
