@@ -91,4 +91,10 @@ public class Application extends Controller {
         response().setContentType("text/html");
         return ok(page.toString());
     }
+    
+    //http://localhost:9000/response-test
+    //Test html response
+    public Result resposeTest() {
+        return ok("<h1>Hello World!</h1>").as("text/html");
+    }
 }
