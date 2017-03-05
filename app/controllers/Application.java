@@ -95,6 +95,29 @@ public class Application extends Controller {
     //http://localhost:9000/response-test
     //Test html response
     public Result resposeTest() {
-        return ok("<h1>Hello World!</h1>").as("text/html");
+        //Setting HTTP response headers
+        response().setHeader(CACHE_CONTROL, "max-age=3600");
+        response().setHeader(ETAG, "xxx");
+        
+        //add a Cookie to the HTTP response
+        response().setCookie("theme", "blue");
+        response().setCookie(
+            "theme",        // name
+            "blue",         // value
+            3600,           // maximum age
+            "/some/path",   // path
+            ".example.com", // domain
+            false,          // secure
+            true            // http only
+        );
+        
+        //discard a Cookie
+        response().discardCookie("theme");
+        
+        //Specifying the character encoding for text results
+        return ok("<h1>Hello World!</h1>", "iso-8859-1").as("text/html; charset=iso-8859-1");
+        
+        //html response
+        //return ok("<h1>Hello World!</h1>").as("text/html");
     }
 }
