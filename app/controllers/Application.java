@@ -23,6 +23,10 @@ import static play.libs.Json.*;
 public class Application extends Controller {
 
     public Result index() {
+
+        // Set a test session value
+        session("connected", "user@gmail.com");
+
         return ok(index.render());
     }
 
@@ -90,6 +94,15 @@ public class Application extends Controller {
         //String content = Page.getContentOf(page);
         response().setContentType("text/html");
         return ok(page.toString());
+    }
+
+    public Result sessionTest() {
+        String user = session("connected");
+        if(user != null) {
+            return ok("Hello " + user);
+        } else {
+            return unauthorized("Oops, you are not connected");
+        }
     }
     
     //http://localhost:9000/response-test
