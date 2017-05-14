@@ -26,10 +26,11 @@ public class Application extends Controller {
 
         // Set a test session value
         session("connected", "user@gmail.com");
-
         return ok(index.render());
     }
 
+    // Read following link for understanding concept of Transactional: 
+    // https://www.playframework.com/documentation/2.5.x/JavaJPA#Annotating-JPA-actions-with-@Transactional
     @Transactional
     public Result addPerson() {
         Person person = Form.form(Person.class).bindFromRequest().get();
